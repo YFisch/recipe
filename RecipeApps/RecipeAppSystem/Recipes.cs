@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics;
 
 namespace RecipeAppSystem
@@ -7,25 +8,38 @@ namespace RecipeAppSystem
     {
         public static DataTable SearchRecipes(string recipe)
         {
-            string sql = "select RecipeId, RecipeName, Calories, DateDrafted, DatePublished, DateArchived, RecipeStatus, RecipePicture from Recipe r where r.RecipeName like '%" + recipe + "%' ";
-            DataTable dt = SQLUtility.GetDatatable(sql);
+            DataTable dt = new();
+            SqlCommand cmd = SQLUtility.GetSQLCommand("RecipeGet");
+            cmd.Parameters["@RecipeName"].Value = recipe;
+            dt = SQLUtility.GetDataTable(cmd);
             return dt;
         }
 
         public static DataTable Load(int recipeid)
         {
-            string sql = "select r.*, u.UserName, ct.CuisineTypeName from Recipe r join users u on r.UsersId = u.UsersId join CuisineType ct on r.CuisinetypeId = ct.CuisineTypeId where r.RecipeId = " + recipeid.ToString();
-            return SQLUtility.GetDatatable(sql);
+            DataTable dt = new();
+            SqlCommand cmd = SQLUtility.GetSQLCommand("RecipeGet");
+            cmd.Parameters["@RecipeId"].Value = recipeid;
+            dt = SQLUtility.GetDataTable(cmd);
+            return dt;
         }
 
         public static DataTable GetUserNameList()
         {
-            return SQLUtility.GetDatatable("select UsersId, UserName from Users");
+            DataTable dt = new();
+            SqlCommand cmd = SQLUtility.GetSQLCommand("UsersGet");
+            cmd.Parameters["@All"].Value = 1;
+            dt = SQLUtility.GetDataTable(cmd);
+            return dt;
         }
 
         public static DataTable GetCuisineTypeList()
         {
-            return SQLUtility.GetDatatable("select CuisineTypeId, CuisineTypeName from CuisineType");
+            DataTable dt = new();
+            SqlCommand cmd = SQLUtility.GetSQLCommand("CuisineTypeGet");
+            cmd.Parameters["@All"].Value = 1;
+            dt = SQLUtility.GetDataTable(cmd);
+            return dt;
         }
 
         public static void Save(DataTable dtrecipe)

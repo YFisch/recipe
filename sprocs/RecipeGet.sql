@@ -1,4 +1,4 @@
-create or alter procedure RecipeGet(@All bit = 0, @RecipeId int = 0, @RecipeName varchar(100) = '')
+create or alter procedure RecipeGet(@RecipeId int = 0, @RecipeName varchar(100) = '', @All bit = 0)
 as
 begin 
 	select @RecipeName = nullif(@RecipeName, '')
@@ -6,7 +6,7 @@ begin
 	from Recipe r
 	where r.RecipeId = @RecipeId
 	or @All = 1
-	or r.RecipeName like '%' + @RecipeName + '%'
+	or (r.RecipeName like '%' + @RecipeName + '%')
 	order by r.RecipeName
 end
 go

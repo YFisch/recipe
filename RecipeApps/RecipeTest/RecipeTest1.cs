@@ -15,7 +15,7 @@ namespace RecipeTest
         [TestCase("test", "2023-03-03")]
         public void InsertNewRecipe(string recipename, DateTime datedrafted)
         {
-            DataTable dt = SQLUtility.GetDatatable("select * from Recipe where RecipeId = 0");
+            DataTable dt = SQLUtility.GetDataTable("select * from Recipe where RecipeId = 0");
             DataRow r = dt.Rows.Add();
             Assume.That(dt.Rows.Count == 1);
             int usersid = SQLUtility.GetFirstColumnFirstRowValue("select top 1 Usersid from Users");
@@ -64,7 +64,7 @@ namespace RecipeTest
         [Test]
         public void DeleteRecipe()
         {
-            DataTable dt = SQLUtility.GetDatatable("select top 1 RecipeId, RecipeName, RecipeStatus from Recipe ");
+            DataTable dt = SQLUtility.GetDataTable("select top 1 RecipeId, RecipeName, RecipeStatus from Recipe ");
             int recipeid = 0;
             string recipedesc = "";
             if (dt.Rows.Count > 0)
@@ -76,7 +76,7 @@ namespace RecipeTest
             TestContext.WriteLine("existing recipe with id = " + recipeid + " " + recipedesc);
             TestContext.WriteLine("ensure that app can delete " + recipeid);
             Recipes.Delete(dt);
-            DataTable dtafterdelete = SQLUtility.GetDatatable("select * from recipe where recipeid = " + recipeid);
+            DataTable dtafterdelete = SQLUtility.GetDataTable("select * from recipe where recipeid = " + recipeid);
             Assert.IsTrue(dtafterdelete.Rows.Count == 0, "record with recipeid " + recipeid + " exists in db");
             TestContext.WriteLine("Record with recipeid " + recipeid + " does not exist in DB");
         }
@@ -93,6 +93,24 @@ namespace RecipeTest
             Assert.IsTrue(loadedid == recipeid, loadedid + "<>" + recipeid);
             TestContext.WriteLine("Loaded recipe (" + recipeid + ")" + recipeid);
         }
+
+
+        [Test]
+        public void SearchPresidents()
+        {
+            string criteria = "a";
+            int num = SQLUtility.GetFirstColumnFirstRowValue("select total = count(*) from recipe where recipename like '%" + criteria + "%'");
+            Assume.That(num > 0, "There are no recipes that match the search for " + num);
+            TestContext.WriteLine(num + " recipes that match " + criteria);
+            TestContext.WriteLine("Ensure that recipes search returns " + num + " rows ");
+
+            DataTable dt = Recipes.SearchRecipes(criteria);
+            int results = dt.Rows.Count;
+
+            Assert.IsTrue(results == num, "Result of recipe search does not match number of recipes, " + results + " <> " + num);
+            TestContext.WriteLine("Number of rows returned by recipe search is " + results);
+        }
+
 
         [Test]
         public void GetListOfCuisineType()
