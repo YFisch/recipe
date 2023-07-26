@@ -7,7 +7,7 @@ namespace RecipeWinForms
 {
     public partial class frmRecipe : Form
     {
-        DataTable dtRecipe;
+        DataTable dtRecipe = new DataTable();
 
         public frmRecipe()
         {
@@ -38,14 +38,38 @@ namespace RecipeWinForms
         }
 
         private void Save()
-        {
-            Recipes.Save(dtRecipe);
+        {           
+            Application.UseWaitCursor = true;
+            try
+            {
+                Recipes.Save(dtRecipe);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Recipe");
+            }
+            finally
+            {
+                Application.UseWaitCursor = false;
+            }
         }
 
         private void Delete()
         {
-            Recipes.Delete(dtRecipe);
-            this.Close();
+            Application.UseWaitCursor = true;
+            try
+            {
+                Recipes.Delete(dtRecipe);
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Recipe");
+            }
+            finally
+            {
+                Application.UseWaitCursor = false;
+            }
         }
 
         private void BtnDelete_Click(object? sender, EventArgs e)
