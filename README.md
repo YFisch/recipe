@@ -10,5 +10,5 @@ Then we have meals that has courses wich has a sequence in the meal and courses 
 Then we have cookbooks that has a name, price and recipes that has a certain sequence how it's presented in the cookbook
 We also have pictures for ingredients, recipes, meals, and cookbooks that is named first the name of the type and then the specific name for that type and then .jpg. and we replace the spaces with dashes.
 
-## Iplementation
+## Implementation
 We created an App to beable to search all the recipes and then view the details of it.
