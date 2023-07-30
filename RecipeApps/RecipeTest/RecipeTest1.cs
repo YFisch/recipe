@@ -134,9 +134,17 @@ namespace RecipeTest
         }
 
         [Test]
-        public void DeleteRecipeWithRecipeInstructions()
+        public void DeleteRecipeWithRecipeInstructionsThatIsPublishedOrArchivedForLessThanThirtyDays()
         {
-            DataTable dt = SQLUtility.GetDataTable("select top 1 r.RecipeId, r.Recipename, r.RecipeStatus from Recipe r join RecipeInstructions ri on r.RecipeId = ri.RecipeId");
+            string sql = @"
+                select top 1 r.RecipeId, r.Recipename, r.RecipeStatus
+                from Recipe r
+                join RecipeInstructions ri
+                on r.RecipeId = ri.RecipeId
+                where DATEDIFF(day, r.DateArchived, GETDATE()) <= 30 
+                or r.RecipeStatus <> 'Drafted'
+                ";
+            DataTable dt = SQLUtility.GetDataTable(sql);
             int recipeid = 0;
             string recipedesc = "";
             if (dt.Rows.Count > 0)
@@ -144,8 +152,8 @@ namespace RecipeTest
                 recipeid = (int)dt.Rows[0]["recipeid"];
                 recipedesc = dt.Rows[0]["RecipeName"] + " " + dt.Rows[0]["Recipestatus"];
             }
-            Assume.That(recipeid > 0, "No recipes with recipe instructions in DB, can't run test");
-            TestContext.WriteLine("existing recipe with recipe instructions, with id = " + recipeid + " " + recipedesc);
+            Assume.That(recipeid > 0, "No recipes that is published or archived for less than thirty days with recipe instructions in DB, can't run test");
+            TestContext.WriteLine("existing recipe that is published or archived for less than thirty days with recipe instructions, with id = " + recipeid + " " + recipedesc);
             TestContext.WriteLine("ensure that app cannot delete " + recipeid);
 
             Exception ex = Assert.Throws<Exception>(() => Recipes.Delete(dt));
