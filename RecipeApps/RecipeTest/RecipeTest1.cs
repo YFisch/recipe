@@ -33,9 +33,16 @@ namespace RecipeTest
             Recipes.Save(dt);
 
             int newid = SQLUtility.GetFirstColumnFirstRowValue("select * from recipe where  calories = " + maxcalories);
+            int pkid = 0;
+            if (r["RecipeId"] != DBNull.Value)
+            {
+                pkid = (int)r["RecipeId"];
+            }
 
             Assert.IsTrue(newid > 0, "Recipe with maxcalories = " + maxcalories + "is not found in DB");
+            Assert.IsTrue(pkid > 0, "Primary key not updated in datatable");
             TestContext.WriteLine("recipe with " + maxcalories + " is found in db with pk value = " + newid);
+            TestContext.WriteLine("new primary key = " + pkid);
         }
 
         [Test]
@@ -176,7 +183,7 @@ namespace RecipeTest
 
 
         [Test]
-        public void SearchPresidents()
+        public void SearchRecipes()
         {
             string criteria = "a";
             int num = SQLUtility.GetFirstColumnFirstRowValue("select total = count(*) from recipe where recipename like '%" + criteria + "%'");

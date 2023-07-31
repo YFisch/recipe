@@ -218,6 +218,7 @@
             txtDatePublished.Dock = DockStyle.Fill;
             txtDatePublished.Location = new Point(125, 339);
             txtDatePublished.Name = "txtDatePublished";
+            txtDatePublished.ReadOnly = true;
             txtDatePublished.Size = new Size(350, 29);
             txtDatePublished.TabIndex = 14;
             // 
@@ -226,6 +227,7 @@
             txtDateArchived.Dock = DockStyle.Fill;
             txtDateArchived.Location = new Point(125, 395);
             txtDateArchived.Name = "txtDateArchived";
+            txtDateArchived.ReadOnly = true;
             txtDateArchived.Size = new Size(350, 29);
             txtDateArchived.TabIndex = 15;
             // 
