@@ -1,4 +1,4 @@
-create or alter function dbo.RecipeInfo(@Recipeid int)
+create or alter function dbo.RecipeInfo(@RecipeId int)
 returns varchar(250)
 as
 begin
@@ -12,7 +12,7 @@ begin
 	on r.RecipeId = ri.RecipeId
 	join RecipeIngredients rin 
 	on r.RecipeId = rin.RecipeId
-	where r.RecipeId = @Recipeid
+	where r.RecipeId = @RecipeId
 	group by r.RecipeName, ct.CuisinetypeName
 
 	return @value
