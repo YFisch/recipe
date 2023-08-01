@@ -249,9 +249,11 @@
             // 
             // dtpDateDrafted
             // 
+            dtpDateDrafted.Checked = false;
             dtpDateDrafted.Format = DateTimePickerFormat.Short;
             dtpDateDrafted.Location = new Point(125, 283);
             dtpDateDrafted.Name = "dtpDateDrafted";
+            dtpDateDrafted.ShowCheckBox = true;
             dtpDateDrafted.Size = new Size(158, 29);
             dtpDateDrafted.TabIndex = 20;
             // 
