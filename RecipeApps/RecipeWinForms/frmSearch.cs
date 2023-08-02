@@ -1,6 +1,4 @@
-﻿using System.Data;
-
-namespace RecipeWinForms
+﻿namespace RecipeWinForms
 {
     public partial class frmSearch : Form
     {
@@ -10,7 +8,7 @@ namespace RecipeWinForms
             btnSearch.Click += BtnSearch_Click;
             gRecipe.CellDoubleClick += GRecipe_CellDoubleClick;
             btnNew.Click += BtnNew_Click;
-            WindowsFormsUtility.FormatGridForSearchResult(gRecipe);
+            WindowsFormsUtility.FormatGridForSearchResult(gRecipe, "Recipe");
         }
 
         private void SearchForRecipe(string recipe)

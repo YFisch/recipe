@@ -1,9 +1,4 @@
-﻿using CPUFramework;
-using System.Data;
-using CPUWindowsFormFramework;
-using System.Diagnostics;
-
-namespace RecipeWinForms
+﻿namespace RecipeWinForms
 {
     public partial class frmRecipe : Form
     {
@@ -37,6 +32,7 @@ namespace RecipeWinForms
             WindowsFormsUtility.SetControlBinding(lblRecipeStatus, bindsource);
             WindowsFormsUtility.SetControlBinding(lblRecipePicture, bindsource);
             this.Show();
+            ClearDateDrafetedFromNewForm();
         }
 
         private void Save()
@@ -76,6 +72,15 @@ namespace RecipeWinForms
             finally
             {
                 Application.UseWaitCursor = false;
+            }
+        }
+
+        private void ClearDateDrafetedFromNewForm()
+        {
+            if (txtRecipeName.Text == "")
+            {
+                this.dtpDateDrafted.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+                this.dtpDateDrafted.CustomFormat = " ";
             }
         }
 
