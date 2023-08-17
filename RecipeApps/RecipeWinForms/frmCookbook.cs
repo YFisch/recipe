@@ -1,4 +1,6 @@
-﻿namespace RecipeWinForms
+﻿using System.Windows.Forms;
+
+namespace RecipeWinForms
 {
     public partial class frmCookbook : Form
     {
@@ -11,6 +13,7 @@
         {
             InitializeComponent();
             btnSave.Click += BtnSave_Click;
+            btnDelete.Click += BtnDelete_Click;
             btnSaveCookbookRecipe.Click += BtnSaveCookbookRecipe_Click;
             gCookbookRecipes.CellContentClick += GCookbookRecipes_CellContentClick;
             this.FormClosing += FrmCookbook_FormClosing;
@@ -45,6 +48,7 @@
             WindowsFormsUtility.AddComboBoxToGrid(gCookbookRecipes, DataMaintenance.GetDataList("Recipe", true), "Recipe", "Recipename");
             WindowsFormsUtility.FormatGridForEdit(gCookbookRecipes, "CookbookRecipe");
             WindowsFormsUtility.AddDeleteButtonToGrid(gCookbookRecipes, deletecolname);
+            ColumnDisplayOrder("Recipe, CookbookRecipeSequence, Delete", gCookbookRecipes);
         }
 
         private bool Save()
@@ -71,6 +75,29 @@
                 Application.UseWaitCursor = false;
             }
             return b;
+        }
+
+        private void Delete()
+        {
+            var response = MessageBox.Show("Are you sure you want to delete this cookbook?", Application.ProductName, MessageBoxButtons.YesNo);
+            if (response == DialogResult.No)
+            {
+                return;
+            }
+            Application.UseWaitCursor = true;
+            try
+            {
+                Cookbooks.Delete(dtcookbook);
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Application.ProductName);
+            }
+            finally
+            {
+                Application.UseWaitCursor = false;
+            }
         }
 
         private void SaveCookbookRecipe()
@@ -113,6 +140,17 @@
             }
         }
 
+        private void ColumnDisplayOrder(string columnList, DataGridView gridView)
+        {
+            var columnListArray = columnList.Split(',');
+            for (var i = 0; i < columnListArray.Length; i++)
+            {
+                var gridViewColumn = gridView.Columns[columnListArray[i].Trim()];
+                if (gridViewColumn != null)
+                    gridViewColumn.DisplayIndex = i;
+            }
+        }
+
         private void SetButtonsEnabledBasedOnNewRecord()
         {
             bool b = cookbookid == 0 ? false : true;
@@ -130,6 +168,11 @@
             }
             return value;
 
+        }
+
+        private void BtnDelete_Click(object? sender, EventArgs e)
+        {
+            Delete();
         }
 
         private void BtnSave_Click(object? sender, EventArgs e)
