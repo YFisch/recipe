@@ -4,16 +4,16 @@ as
 begin
 	declare @value varchar(250) = ''
 
-	select @value = CONCAT(r.RecipeName, ' (', ct.IngredientsName, ') has ', COUNT(distinct rin.RecipeIngredientsId), ' ingredients and ', COUNT(distinct ri.RecipeInstructionsId), ' steps.')
-	from Ingredients ct
+	select @value = CONCAT(r.RecipeName, ' (', ct.CuisinetypeName, ') has ', COUNT(distinct rin.RecipeIngredientsId), ' ingredients and ', COUNT(distinct ri.RecipeInstructionsId), ' steps.')
+	from CuisineType ct
 	join Recipe r
-	on ct.IngredientsId = r.IngredientsId
+	on ct.CuisineTypeId = r.CuisinetypeId
 	join RecipeInstructions ri
 	on r.RecipeId = ri.RecipeId
 	join RecipeIngredients rin 
 	on r.RecipeId = rin.RecipeId
 	where r.RecipeId = @RecipeId
-	group by r.RecipeName, ct.IngredientsName
+	group by r.RecipeName, ct.CuisinetypeName
 
 	return @value
 end

@@ -8,7 +8,7 @@ begin
 	from Cookbook c
 	join users u
 	on u.UsersId = c.UsersId
-	join CookbookRecipe cr
+	left join CookbookRecipe cr
 	on c.CookbookId = cr.CookbookId
 	where c.CookbookId = @CookbookId
 	or @All = 1
