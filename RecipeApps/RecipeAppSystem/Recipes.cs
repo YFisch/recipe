@@ -1,4 +1,6 @@
-﻿namespace RecipeAppSystem
+﻿using System.Runtime.CompilerServices;
+
+namespace RecipeAppSystem
 {
     public class Recipes
     {
@@ -55,6 +57,20 @@
             SqlCommand cmd = SQLUtility.GetSQLCommand("RecipeDelete");
             SQLUtility.SetParamValue(cmd, "@RecipeId", id);
             SQLUtility.ExecuteSQL(cmd);
+        }
+
+        public static DataTable GetRecipeSummary()
+        {
+            SqlCommand cmd = SQLUtility.GetSQLCommand("RecipeSummaryGet");
+            SQLUtility.SetParamValue(cmd,"@All", 1);
+            return SQLUtility.GetDataTable(cmd);
+        }
+
+        public static int CloneRecipe(int basedrecipeid)
+        {
+            SqlCommand cmd = new();
+            int id = SQLUtility.GetParamValue(cmd, "CloneRecipe", "@RecipeId" ,"@BaseRecipeId", basedrecipeid);
+            return id;
         }
     }
 }

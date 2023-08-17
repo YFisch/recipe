@@ -18,16 +18,17 @@
             gRecipe.Columns["RecipeId"].Visible = false;
         }
 
-        private void ShowRecipeForm(int rowindex)
+        public void ShowRecipeForm(int rowindex)
         {
             int id = 0;
             if(rowindex > -1)
             {
-                id = (int)gRecipe.Rows[rowindex].Cells["RecipeId"].Value;
+                id = WindowsFormsUtility.GetIdFromGrid(gRecipe, rowindex, "RecipeId");
             }    
-            
-            frmRecipe frm = new frmRecipe();
-            frm.ShowForm(id);
+            if(this.MdiParent != null && this.MdiParent is frmMain)
+            {
+               ((frmMain)this.MdiParent).OpenForm(typeof(frmRecipe), id);
+            }
         }
 
         private void GRecipe_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)
@@ -42,7 +43,7 @@
 
         private void BtnNew_Click(object? sender, EventArgs e)
         {
-            ShowRecipeForm(-1);
+           ShowRecipeForm(-1);
         }
     }
 }

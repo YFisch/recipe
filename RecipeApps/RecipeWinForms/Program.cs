@@ -14,7 +14,7 @@ namespace RecipeWinForms
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             DBManager.SetConnectionString ("Server=.\\SQLExpress;Database=HeartyHearthDB;Trusted_Connection=true");
-            Application.Run(new frmSearch());
+            Application.Run(new frmMain());
         }
     }
 }

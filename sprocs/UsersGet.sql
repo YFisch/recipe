@@ -1,12 +1,19 @@
-create or alter procedure UsersGet(@UsersId int = 0, @UserName  varchar(100) = '', @All bit = 0)
+create or alter procedure UsersGet(
+	@UsersId int = 0, 
+	@All bit = 0,
+	@IncludeBlank bit = 0
+)
 as
 begin 
-	select @UserName = nullif(@UserName, '')
+	select @IncludeBlank = ISNULL(@IncludeBlank, 0)
+
+
 	select u.UsersId, u.FirstName, u.LastName, u.UserName
 	from users u
 	where u.UsersId = @UsersId
 	or @All = 1
-	or u.UserName like '%' + @UserName + '%'
+	union select 0, '', '', ''
+	where @IncludeBlank = 1
 	order by u.UserName
 end
 go

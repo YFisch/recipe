@@ -16,9 +16,9 @@ namespace RecipeTest
             DataRow r = dt.Rows.Add();
             Assume.That(dt.Rows.Count == 1);
             int usersid = SQLUtility.GetFirstColumnFirstRowValue("select top 1 Usersid from Users");
-            int cuisineid = SQLUtility.GetFirstColumnFirstRowValue("select top 1 cuisineTypeid from CuisineType");
+            int cuisineid = SQLUtility.GetFirstColumnFirstRowValue("select top 1 CuisineTypeid from CuisineType");
             Assume.That(usersid > 0, "can't run test, no users in the db");
-            Assume.That(cuisineid > 0, "can't run test, no cuisinetypes in the db");
+            Assume.That(cuisineid > 0, "can't run test, no Cuisines in the db");
 
             int maxcalories = SQLUtility.GetFirstColumnFirstRowValue("select max(calories) from recipe");
             maxcalories = maxcalories + 5;

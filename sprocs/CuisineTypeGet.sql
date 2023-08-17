@@ -1,30 +1,36 @@
-create or alter procedure CuisineTypeGet(@CuisineTypeId int = 0, @CuisineTypeName  varchar(100) = '', @All bit = 0)
+create or alter procedure IngredientsGet(
+	@IngredientsId int = 0,
+	@All bit = 0,
+	@IncludeBlank bit = 0
+)
 as
 begin 
-	select @CuisineTypeName = nullif(@CuisineTypeName, '')
-	select ct.CuisineTypeId, ct.CuisinetypeName
-	from CuisineType ct
-	where ct.CuisineTypeId = @CuisineTypeId
+	select @IncludeBlank = ISNULL(@IncludeBlank, 0)
+
+	select ct.IngredientsId, ct.IngredientsName
+	from Ingredients ct
+	where ct.IngredientsId = @IngredientsId
 	or @All = 1
-	or ct.CuisinetypeName like '%' + @CuisineTypeName + '%'
-	order by ct.CuisinetypeName
+	union select 0, ''
+	where @IncludeBlank = 1
+	order by ct.IngredientsName
 end
 go
 
 /*
-exec CuisineTypeGet
+exec IngredientsGet
 
-exec CuisineTypeGet @All = 1
+exec IngredientsGet @All = 1
 
 declare @Id int
 
-select top 1 @Id = ct.CuisineTypeId from CuisineType ct
+select top 1 @Id = ct.IngredientsId from Ingredients ct
 
-exec CuisineTypeGet @CuisineTypeId  = @Id
+exec IngredientsGet @IngredientsId  = @Id
 
-exec CuisineTypeGet @CuisineTypeName = ''
+exec IngredientsGet @IngredientsName = ''
 
-exec CuisineTypeGet @CuisineTypeName = null
+exec IngredientsGet @IngredientsName = null
 
-exec CuisineTypeGet @CuisineTypeName = 'c'
+exec IngredientsGet @IngredientsName = 'c'
 */

@@ -1,4 +1,9 @@
-create or alter procedure RecipeGet(@RecipeId int = 0, @RecipeName varchar(100) = '', @All bit = 0)
+create or alter procedure RecipeGet(
+	@RecipeId int = 0, 
+	@RecipeName varchar(100) = '',
+	@All bit = 0,
+	@IncludeBlank bit = 0
+)
 as
 begin 
 	select @RecipeName = nullif(@RecipeName, '')
@@ -7,6 +12,8 @@ begin
 	where r.RecipeId = @RecipeId
 	or @All = 1
 	or (r.RecipeName like '%' + @RecipeName + '%')
+	union select 0, 0, 0, '', 0, '', '', '', '', ''
+	where @IncludeBlank = 1
 	order by r.RecipeName
 end
 go

@@ -25,7 +25,7 @@ union select 'Miley', 'Stevenson', 'MileyStevenson'
 union select 'Nicole', 'Moon', 'NicoleMoon'
 union select 'Flora', 'Gross', 'FloraGross'
 
-insert CuisineType(CuisinetypeName)
+insert CuisineType(CuisineTypeName)
 select 'American'
 union select 'French'
 union select 'English'
@@ -100,13 +100,13 @@ with x as(
     union select 'AvaMedrano', 'French', 'Juicy Rib Steak', 291, '03-22-2023', null, null
     union select 'NicoleMoon', 'English', 'Fruit Tea', 4, '06-14-2021', null, null
 )
-insert Recipe(UsersId, CuisineTypeId, RecipeName, Calories, DateDrafted, DatePublished, DateArchived)
+insert Recipe(UsersId, CuisinetypeId, RecipeName, Calories, DateDrafted, DatePublished, DateArchived)
 select un.UsersId, ct.CuisineTypeId, x.RecipeName, x.Calories, x.Datedrafted, x.DatePublished, x.DateArchived
 from x
 join Users un
 on x.UserName = un.UserName
 join CuisineType ct
-on x.CuisineTypeName = ct.CuisinetypeName
+on x.CuisineTypeName = ct.CuisineTypeName
 
 ;
 with x as(
@@ -241,13 +241,13 @@ on x.UserName = un.UserName
 
 ;
 with x as(
-    select MealName = 'Breakfast Bash', CourseName = 'Main'
+    select MealName = 'Breakfast Bash', CourseName = 'Main Dish'
     union select 'Breakfast Bash', 'Dessert'
     union select 'Wish Meal', 'Appetizer'
-    union select 'Wish Meal', 'Main'
+    union select 'Wish Meal', 'Main Dish'
     union select 'Wish Meal', 'Dessert'
     union select 'Diet to Go', 'Appetizer'
-    union select 'Home Chef', 'Main'
+    union select 'Home Chef', 'Main Dish'
     union select 'Home Chef', 'Dessert'
 )
 insert MealCourse(MealId, CourseId)
@@ -260,15 +260,15 @@ on x.CourseName = c.CourseName
 
 ;
 with x as(
-    select MealName = 'Breakfast Bash', CourseName = 'Main', RecipeName = 'Cheese Bread', IsMain = 1
-    union select 'Breakfast Bash', 'Main', 'spicy Olive Dip', 0
+    select MealName = 'Breakfast Bash', CourseName = 'Main Dish', RecipeName = 'Cheese Bread', IsMain = 1
+    union select 'Breakfast Bash', 'Main Dish', 'spicy Olive Dip', 0
     union select 'Breakfast Bash', 'Dessert', 'Chocolate Chip Cookies', 0
     union select 'Wish Meal', 'Appetizer', 'Peanut butter & jam flapjacks', 0
-    union select 'Wish Meal', 'Main', 'Juicy Rib Steak', 1
-    union select 'Wish Meal', 'Main', 'spicy Olive Dip', 0
+    union select 'Wish Meal', 'Main Dish', 'Juicy Rib Steak', 1
+    union select 'Wish Meal', 'Main Dish', 'spicy Olive Dip', 0
     union select 'Wish Meal', 'Dessert', 'Fruit Tea', 0
     union select 'Diet to Go', 'Appetizer', 'Apple Yogurt Smoothie', 0
-    union select 'Home Chef',  'Main', 'Cheese Bread', 1
+    union select 'Home Chef',  'Main Dish', 'Cheese Bread', 1
     union select 'Home Chef', 'Dessert', 'Chocolate Chip Cookies', 0
     union select 'Home Chef', 'Dessert', 'Butter Muffins', 0
 )
