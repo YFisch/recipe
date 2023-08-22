@@ -232,7 +232,7 @@
             bindsource.EndEdit();
             if (SQLUtility.TableHasChanges(dtRecipe))
             {
-                var res = MessageBox.Show($"Do you want to dave changes to {this.Text} before closing the form?", Application.ProductName, MessageBoxButtons.YesNoCancel);
+                var res = MessageBox.Show($"Do you want to save changes to {this.Text} before closing the form?", Application.ProductName, MessageBoxButtons.YesNoCancel);
                 switch (res)
                 {
                     case DialogResult.Yes:
