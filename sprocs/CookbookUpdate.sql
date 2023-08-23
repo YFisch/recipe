@@ -11,7 +11,7 @@ as
 begin
 	declare @return int = 0
 
-	select @CookbookId = ISNULL(@CookbookId, 0), @DateCreated = ISNULL(@DateCreated, GETDATE())
+	select @CookbookId = ISNULL(@CookbookId, 0), @DateCreated = ISNULL(@DateCreated, GETDATE()), @Active = ISNULL(@Active, 0)
 
 	if @CookbookId = 0
 	begin
