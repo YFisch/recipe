@@ -65,7 +65,7 @@ create table dbo.Recipe(
             end
         else 'Archived'
         end PERSISTED,
-    RecipePicture as TRANSLATE(CONCAT('Recipe', '-',RecipeName,'.jpg.'),' ','-') PERSISTED,
+    RecipePicture as TRANSLATE(CONCAT('Recipe', '_',RecipeName,'.jpg'),' ','_') PERSISTED,
     constraint ck_Recipe_date_published_must_be_between_date_drafted_and_date_archived check(DatePublished between DateDrafted and DateArchived),
     constraint ck_Recipe_date_archived_must_be_greater_than_date_drafted check(DateArchived >= DateDrafted)
 )

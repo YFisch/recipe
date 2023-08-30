@@ -95,8 +95,8 @@ with x as(
     union select 'StephanieGriffin', 'French', 'Apple Yogurt Smoothie', 169, '10-27-2022', '11-1-2022', null
     union select 'MercyMoss', 'English', 'Cheese Bread', 650, '05-10-2023', null, null
     union select 'AvaMedrano', 'American', 'Butter Muffins', 169, '07-06-2015', '10-26-2015', '07-20-2023'
-    union select 'FloraGross', 'Mexican', 'Peanut Butter & Jam Flapjacks', 156, '01-30-2017', null, '02-28-2017'
-    union select 'FloraGross', 'Caribbean', 'spicy Olive Dip', 433, '02-10-2018', '02-11-2018', null
+    union select 'FloraGross', 'Mexican', 'Peanut Butter and Jam Flapjacks', 156, '01-30-2017', null, '02-28-2017'
+    union select 'FloraGross', 'Caribbean', 'Spicy Olive Dip', 433, '02-10-2018', '02-11-2018', null
     union select 'AvaMedrano', 'French', 'Juicy Rib Steak', 291, '03-22-2023', null, null
     union select 'NicoleMoon', 'English', 'Fruit Tea', 4, '06-14-2021', null, null
 )

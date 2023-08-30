@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RecipeMAUI.RecipeList"
+             Title="RecipeList">
+    <Grid ColumnDefinitions="*" RowDefinitions="Auto,*" HorizontalOptions="Center" RowSpacing="25" ColumnSpacing="10">
+        <Label Text="Recipe List" Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" FontSize="Header"/>
+        <ListView x:Name="RecipeLst" Grid.Column="0" Grid.Row="1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid RowDefinitions="Auto" ColumnDefinitions="10*,20*,10*,20*,10*,10*,10*" ColumnSpacing="10" RowSpacing="10">
+                            <Image Grid.Row="0" Grid.Column="0" HeightRequest="125" Source="{Binding Path=[RecipePicture], StringFormat='{0}'}"/>
+                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Path=[RecipeName]}" VerticalOptions="Center"/>
+                            <Label Grid.Row="0" Grid.Column="2" Text="{Binding Path=[RecipeStatus]}" VerticalOptions="Center"/>
+                            <Label Grid.Row="0" Grid.Column="3" Text="{Binding Path=[Users]}" VerticalOptions="Center"/>
+                            <Label Grid.Row="0" Grid.Column="4" Text="{Binding Path=[Calories]}" VerticalOptions="Center"/>
+                            <Label Grid.Row="0" Grid.Column="5" Text="{Binding Path=[NumIngredients]}" VerticalOptions="Center"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</ContentPage>

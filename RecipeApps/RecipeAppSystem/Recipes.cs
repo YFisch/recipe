@@ -61,9 +61,11 @@ namespace RecipeAppSystem
 
         public static DataTable GetRecipeSummary()
         {
+            DataTable dt = new();
             SqlCommand cmd = SQLUtility.GetSQLCommand("RecipeSummaryGet");
             SQLUtility.SetParamValue(cmd,"@All", 1);
-            return SQLUtility.GetDataTable(cmd);
+            dt = SQLUtility.GetDataTable(cmd);
+            return dt;
         }
 
         public static int CloneRecipe(int basedrecipeid)

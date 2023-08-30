@@ -1,7 +1,7 @@
 
 with x as(
     select UserName = 'AvaMedrano', CuisineTypeName = 'American', RecipeName = 'Battered Cheese Sticks', Calories = 123, DateDrafted = '07/21/2023', DatePublished = null, DateArchived = null
-    union select 'StephanieGriffin', 'French', '360-Minute Steak', 455, '05/30/2020', '06/22/2020', null
+    union select 'StephanieGriffin', 'French', '360 Minute Steak', 455, '05/30/2020', '06/22/2020', null
     union select 'MercyMoss', 'English', 'Sweet and Salty Flowers', 233, '09/13/2018', '09/23/2018', '07/06/2021'
     union select 'AvaMedrano', 'American', 'Sweet Chili Salmon Cubes', 365, '02/22/2023', null, null
     union select 'FloraGross', 'Mexican', 'Mexican Hot Chocolate', 555, '10/20/2020', '10/20/2021', null
