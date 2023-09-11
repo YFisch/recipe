@@ -14,6 +14,7 @@
 *secret.config
 *secret-appsettings.json
 *create-login.sql
+*testhost.dll.secret.config
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
