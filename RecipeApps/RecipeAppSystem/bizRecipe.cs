@@ -1,6 +1,6 @@
 ﻿namespace RecipeAppSystem
 {
-    public class bizRecipe : bizObject
+    public class bizRecipe : bizObject<bizRecipe>
     {
         public bizRecipe()
         {
@@ -16,6 +16,23 @@
         private DateTime? _datearchived;
         private string _recipestatus;
         private string _recipepicture;
+
+        public DataTable GetRecipeSummary()
+        {
+            SqlCommand cmd = SQLUtility.GetSQLCommand("RecipeSummaryGet");
+            SQLUtility.SetParamValue(cmd, "@All", 1);
+            var dt = SQLUtility.GetDataTable(cmd);
+            return dt;
+        }
+
+        public DataTable SearchRecipes(string recipenameval)
+        {
+            DataTable dt = new();
+            SqlCommand cmd = SQLUtility.GetSQLCommand(GetSprocName);
+            SQLUtility.SetParamValue(cmd, "@RecipeName", recipenameval);
+            dt = SQLUtility.GetDataTable(cmd);
+            return dt;
+        }
 
         public int Recipeid
         {
