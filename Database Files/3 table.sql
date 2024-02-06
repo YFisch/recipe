@@ -70,6 +70,8 @@ create table dbo.Recipe(
     constraint ck_Recipe_date_archived_must_be_greater_than_date_drafted check(DateArchived >= DateDrafted)
 )
 go
+alter table Recipe add Vegan bit not null default 0
+go
 create table dbo.RecipeInstructions(
     RecipeInstructionsId int not null identity primary key,
     RecipeId int not null constraint f_Recipe_RecipeInstructions foreign key references Recipe(RecipeId),
@@ -110,6 +112,8 @@ create table dbo.Meal(
     Active bit not null constraint d_Meal_Active default 1,
     MealPicture as TRANSLATE(CONCAT('Meal', '-',MealName,'.jpg.'),' ','-') PERSISTED
 )
+go
+alter table Meal add MealDesc varchar(500) not null default ''
 go 
 create table dbo.MealCourse(
     MealCourseId int not null identity primary key,
@@ -139,6 +143,15 @@ create table dbo.Cookbook(
     CookbookPicture as TRANSLATE(CONCAT('Cookbook', '-',CookbookName,'.jpg.'),' ','-') PERSISTED
 )
 go
+alter table Cookbook add SkillNumber int not null constraint ck_Skill_Number_must_be_1_2_or_3 check(skillNumber in (1,2,3)) default 1
+go
+alter table Cookbook add Skill as case SkillNumber
+	when 1 then 'beginner'
+	when 2 then 'intermediate'
+	when 3 then 'advanced'
+	end persisted
+go
+
 create table dbo.CookbookRecipe(
     CookbookRecipeId int not null identity primary key,
     CookbookId int not null constraint f_Cookbook_CookbookRecipe foreign key references Cookbook(CookbookId),

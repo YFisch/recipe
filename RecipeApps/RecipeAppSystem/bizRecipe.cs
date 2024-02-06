@@ -1,4 +1,4 @@
-﻿namespace RecipeAppSystem
+﻿        namespace RecipeAppSystem
 {
     public class bizRecipe : bizObject<bizRecipe>
     {
@@ -16,13 +16,17 @@
         private DateTime? _datearchived;
         private string _recipestatus;
         private string _recipepicture;
+        private string _user;
+        private int _numingredients;
+        private bool _vegan;
 
-        public DataTable GetRecipeSummary()
+        public List<bizRecipe> GetRecipeSummary()
         {
+            List<bizRecipe> lst = new();
             SqlCommand cmd = SQLUtility.GetSQLCommand("RecipeSummaryGet");
             SQLUtility.SetParamValue(cmd, "@All", 1);
             var dt = SQLUtility.GetDataTable(cmd);
-            return dt;
+            return GetListFromDataTable(dt);
         }
 
         public DataTable SearchRecipes(string recipenameval)
@@ -82,6 +86,34 @@
                 }
             }
         }
+
+        public string RecipeStatus
+        {
+            get { return _recipestatus; }
+            set
+            {
+                if (_recipestatus != value)
+                {
+                    _recipestatus = value;
+                    InvokePropertyChanged();
+                }
+            }
+        }
+
+        public string Users
+        {
+            get { return _user; }
+            set
+            {
+                if (_user != value)
+                {
+                    _user = value;
+                    InvokePropertyChanged();
+                }
+            }
+        }
+
+
         public int Calories
         {
             get { return _calories; }
@@ -94,6 +126,33 @@
                 }
             }
         }
+
+        public int NumIngredients
+        {
+            get { return _numingredients; }
+            set
+            {
+                if (_numingredients != value)
+                {
+                    _numingredients = value;
+                    InvokePropertyChanged();
+                }
+            }
+        }
+
+        public bool Vegan
+        {
+            get { return _vegan; }
+            set
+            {
+                if (_vegan != value)
+                {
+                    _vegan = value;
+                    InvokePropertyChanged();
+                }
+            }
+        }
+
         public DateTime DateDrafted
         {
             get { return _datedrafted; }
@@ -130,18 +189,7 @@
                 }
             }
         }
-        public string RecipeStatus
-        {
-            get { return _recipestatus; }
-            set
-            {
-                if (_recipestatus != value)
-                {
-                    _recipestatus = value;
-                    InvokePropertyChanged();
-                }
-            }
-        }
+      
         public string RecipePicture
         {
             get { return _recipepicture; }
@@ -152,7 +200,7 @@
                     _recipepicture = value;
                     InvokePropertyChanged();
                 }
-            }
+            }        
         }
     }
 }

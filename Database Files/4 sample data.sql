@@ -322,3 +322,51 @@ join Cookbook c
 on x.CookbookName = c.CookbookName
 join Recipe r
 on x.RecipeName = r.RecipeName
+
+;
+with x as(
+	select 
+		'Chocolate Chip Cookies' as RecipeName, 0 as Vegan 
+    union all select 'Apple Yogurt Smoothie', 0
+    union all select 'Cheese Bread',0
+    union all select 'Butter Muffins', 0
+    union all select 'Peanut Butter and Jam Flapjacks', 1
+    union all select 'Spicy Olive Dip', 1
+    union all select 'Juicy Rib Steak', 0
+    union all select 'Fruit Tea', 1
+	union all select 'Battered Cheese Sticks', 0 
+    union all select '360 Minute Steak', 0
+    union all select 'Sweet and Salty Flowers', 0
+    union all select 'Sweet Chili Salmon Cubes', 0
+    union all select 'Mexican Hot Chocolate', 1
+)
+update r
+set r.Vegan = x.Vegan
+from Recipe r
+join x on r.RecipeName = x.RecipeName;
+
+;
+with x as(
+	select 
+		'Breakfast Bash' as MealName, 'The Breakfast Bash is a delightful medley of flavors designed to kick-start your day! Enjoy the sumptuous pairing of soft, melt-in-your-mouth Cheese Bread, complemented by a bold and spicy Olive Dip. Finish off with a sweet note of our homemade Chocolate Chip Cookies, baked to golden perfection. A perfect trifecta for a morning indulgence!' as MealDesc
+	union all select 'Wish Meal', 'The Wish Meal is a culinary adventure that caters to a medley of tastes, combining the comfort of classic flavors with succulent sophistication. Sink your teeth into homely Peanut Butter & Jam Flapjacks, followed by a main course of Juicy Rib Steak cooked to tender perfection, with a side of bold Spicy Olive Dip. Complement the experience with a refreshingly aromatic Fruit Tea that soothes and satisfies. This meal is truly a wish granted for food lovers!'
+	union all select 'Diet to Go', '"Diet to Go" is designed for the health-conscious eater on the move. Savor the refreshing blend of our Apple Yogurt Smoothie, crafted with crisp apples and creamy yogurt to provide a nutritious, light, and energizing meal option that fits perfectly into your active lifestyle.'
+	union all select 'Home Chef', 'The "Home Chef" meal is a heartwarming ensemble of baked favorites, perfect for those who love the taste of home. It features a savory Cheese Bread with a delightful cheesy crust, sweet and indulgent Chocolate Chip Cookies for a classic treat, and fluffy Butter Muffins that melt in your mouth with every bite. This selection is sure to bring the cozy comfort of homemade goodness to your table.'
+)
+update m
+set m.MealDesc = x.MealDesc
+from Meal m
+join x on m.MealName = x.MealName;
+
+;
+with x as(
+	select 
+		'Treats for two' as CookbookName, 2 as SkillNumber
+    union all select 'Essentials of Cooking', 3
+    union all select 'Plated', 1
+    union all select 'What is Cooking?', 2		
+)
+update c
+set c.SkillNumber = x.SkillNumber
+from Cookbook c
+join x on c.CookbookName = x.CookbookName;

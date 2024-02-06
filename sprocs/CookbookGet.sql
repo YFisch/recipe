@@ -1,6 +1,7 @@
 create or alter procedure CookbookGet(
 	@CookbookId int = 0, 
-	@All bit = 0
+	@All bit = 0,
+	@IncludeBlank bit = 0
 )
 as
 begin 
@@ -8,5 +9,7 @@ begin
 	from Cookbook c
 	where c.CookbookId = @CookbookId
 	or @All = 1
+	union select 0, 0, '', '', 0, '', ''
+	where @IncludeBlank = 1
 end
 go

@@ -4,7 +4,7 @@ create or alter proc dbo.RecipeSummaryGet(
 )
 as
 begin 
-	select r.RecipeId, r.RecipeName, r.RecipeStatus, Users = CONCAT(u.FirstName, ' ', u.LastName), r.Calories, NumIngredients = COUNT(ri.RecipeId), r.RecipePicture
+	select r.RecipeId, r.UsersId, r.RecipeName, r.RecipeStatus, Users = CONCAT(u.FirstName, ' ', u.LastName), r.Calories, Users = COUNT(ri.RecipeId), r.RecipePicture, r.Vegan
 	from Recipe r
 	join users u
 	on u.UsersId = r.UsersId
@@ -12,7 +12,9 @@ begin
 	on r.RecipeId = ri.RecipeId
 	where r.RecipeId = @RecipeId
 	or @All = 1
-	group by r.RecipeId, r.RecipeName, r.RecipeStatus, u.FirstName, u.LastName, r.Calories, r.RecipePicture
+	group by r.RecipeId, r.UsersId, r.RecipeName, r.RecipeStatus, u.FirstName, u.LastName, r.Calories, r.RecipePicture, r.Vegan
 	order by r.RecipeStatus desc, r.RecipeName
 end
 go
+
+--exec RecipeSummaryGet @All = 1
