@@ -20,3 +20,5 @@ begin
 	return @return
 end
 go
+
+--exec RecipeIngredientsGet @All = 1

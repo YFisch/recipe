@@ -131,14 +131,14 @@ with x as(
     union select 'Butter Muffins', 'Add eggs and mix well', 2
     union select 'Butter Muffins', 'Slowly add rest of ingredients and mix well', 3
     union select 'Butter Muffins', 'fill muffin pans 3/4 full and bake for 30 minutes', 4
-    union select 'Peanut butter & jam flapjacks', 'Put 3 tbsp each of the peanut butter and jam in separate small bowls and set aside', 1
-    union select 'Peanut butter & jam flapjacks', 'Tip the remaining peanut butter, the rest of the jam and the butter and sugar into a pan set over a medium heat and stir until everything has melted together', 2
-    union select 'Peanut butter & jam flapjacks', 'Quickly stir in the oats, then leave to cool for 5 mins', 3
-    union select 'Peanut butter & jam flapjacks', 'line the base and sides of a 20cm square cake tin with baking parchment', 4
-    union select 'Peanut butter & jam flapjacks', 'Spoon the mixture into the prepared cake tin and gently press down with your hands', 5
-    union select 'Peanut butter & jam flapjacks', 'Dot over the reserved peanut butter and jam',6
-    union select 'Peanut butter & jam flapjacks', ' bake on 350 for 20-25 mins or until golden brown', 7
-    union select 'Peanut butter & jam flapjacks', 'Leave to cool completely in the tin, then turn out onto a board and cut into squares', 8
+    union select 'Peanut Butter and Jam Flapjacks', 'Put 3 tbsp each of the peanut butter and jam in separate small bowls and set aside', 1
+    union select 'Peanut Butter and Jam Flapjacks', 'Tip the remaining peanut butter, the rest of the jam and the butter and sugar into a pan set over a medium heat and stir until everything has melted together', 2
+    union select 'Peanut Butter and Jam Flapjacks', 'Quickly stir in the oats, then leave to cool for 5 mins', 3
+    union select 'Peanut Butter and Jam Flapjacks', 'line the base and sides of a 20cm square cake tin with baking parchment', 4
+    union select 'Peanut Butter and Jam Flapjacks', 'Spoon the mixture into the prepared cake tin and gently press down with your hands', 5
+    union select 'Peanut Butter and Jam Flapjacks', 'Dot over the reserved peanut butter and jam',6
+    union select 'Peanut Butter and Jam Flapjacks', ' bake on 350 for 20-25 mins or until golden brown', 7
+    union select 'Peanut Butter and Jam Flapjacks', 'Leave to cool completely in the tin, then turn out onto a board and cut into squares', 8
     union select 'spicy Olive Dip', 'Blend the garlic and oil in a food proccesor, set aside', 1
     union select 'spicy Olive Dip', 'Blend the olives watching it should not get overblended', 2
     union select 'spicy Olive Dip', 'Mix together the garlic mixture with the olives', 3
@@ -189,11 +189,11 @@ with x as(
     union select 'Butter Muffins', 'sour cream cheese', 'oz', 8, 6
     union select 'Butter Muffins', 'flour', 'cup', 1, 7
     union select 'Butter Muffins', 'baking powder', 'tsp', 2, 8
-    union select 'Peanut butter & jam flapjacks', 'salted butter', 'tbsp', 5, 1
-    union select 'Peanut butter & jam flapjacks', 'peanut butter', 'oz', 9, 2
-    union select 'Peanut butter & jam flapjacks', 'raspberry jam', 'tbsp', 8, 3
-    union select 'Peanut butter & jam flapjacks', 'brown sugar', 'oz', 3, 4
-    union select 'Peanut butter & jam flapjacks', 'rolled oats', 'oz', 7, 5
+    union select 'Peanut Butter and Jam Flapjacks', 'salted butter', 'tbsp', 5, 1
+    union select 'Peanut Butter and Jam Flapjacks', 'peanut butter', 'oz', 9, 2
+    union select 'Peanut Butter and Jam Flapjacks', 'raspberry jam', 'tbsp', 8, 3
+    union select 'Peanut Butter and Jam Flapjacks', 'brown sugar', 'oz', 3, 4
+    union select 'Peanut Butter and Jam Flapjacks', 'rolled oats', 'oz', 7, 5
     union select 'spicy Olive Dip', 'garlic', 'cloves', 6, 1
     union select 'spicy Olive Dip', 'oil', 'cup', 0.5, 2
     union select 'spicy Olive Dip', 'jar whole olives', null, 1, 3
@@ -263,7 +263,7 @@ with x as(
     select MealName = 'Breakfast Bash', CourseName = 'Main Dish', RecipeName = 'Cheese Bread', IsMain = 1
     union select 'Breakfast Bash', 'Main Dish', 'spicy Olive Dip', 0
     union select 'Breakfast Bash', 'Dessert', 'Chocolate Chip Cookies', 0
-    union select 'Wish Meal', 'Appetizer', 'Peanut butter & jam flapjacks', 0
+    union select 'Wish Meal', 'Appetizer', 'Peanut Butter and Jam Flapjacks', 0
     union select 'Wish Meal', 'Main Dish', 'Juicy Rib Steak', 1
     union select 'Wish Meal', 'Main Dish', 'spicy Olive Dip', 0
     union select 'Wish Meal', 'Dessert', 'Fruit Tea', 0
@@ -307,9 +307,9 @@ with x as(
     union select 'Essentials of Cooking', 'Cheese Bread', 1
     union select 'Essentials of Cooking', 'Juicy Rib Steak', 2
     union select 'Essentials of Cooking', 'Chocolate Chip Cookies', 3
-    union select 'Plated', 'Peanut butter & jam flapjacks', 1
+    union select 'Plated', 'Peanut Butter and Jam Flapjacks', 1
     union select 'Plated', 'Butter Muffins', 2
-    union select 'What is Cooking?', 'Peanut butter & jam flapjacks', 1
+    union select 'What is Cooking?', 'Peanut Butter and Jam Flapjacks', 1
     union select 'What is Cooking?', 'Cheese Bread', 2
     union select 'What is Cooking?', 'Butter Muffins', 3
     union select 'What is Cooking?', 'Fruit Tea', 4
@@ -349,7 +349,7 @@ join x on r.RecipeName = x.RecipeName;
 with x as(
 	select 
 		'Breakfast Bash' as MealName, 'The Breakfast Bash is a delightful medley of flavors designed to kick-start your day! Enjoy the sumptuous pairing of soft, melt-in-your-mouth Cheese Bread, complemented by a bold and spicy Olive Dip. Finish off with a sweet note of our homemade Chocolate Chip Cookies, baked to golden perfection. A perfect trifecta for a morning indulgence!' as MealDesc
-	union all select 'Wish Meal', 'The Wish Meal is a culinary adventure that caters to a medley of tastes, combining the comfort of classic flavors with succulent sophistication. Sink your teeth into homely Peanut Butter & Jam Flapjacks, followed by a main course of Juicy Rib Steak cooked to tender perfection, with a side of bold Spicy Olive Dip. Complement the experience with a refreshingly aromatic Fruit Tea that soothes and satisfies. This meal is truly a wish granted for food lovers!'
+	union all select 'Wish Meal', 'The Wish Meal is a culinary adventure that caters to a medley of tastes, combining the comfort of classic flavors with succulent sophistication. Sink your teeth into homely Peanut Butter and Jam Flapjacks, followed by a main course of Juicy Rib Steak cooked to tender perfection, with a side of bold Spicy Olive Dip. Complement the experience with a refreshingly aromatic Fruit Tea that soothes and satisfies. This meal is truly a wish granted for food lovers!'
 	union all select 'Diet to Go', '"Diet to Go" is designed for the health-conscious eater on the move. Savor the refreshing blend of our Apple Yogurt Smoothie, crafted with crisp apples and creamy yogurt to provide a nutritious, light, and energizing meal option that fits perfectly into your active lifestyle.'
 	union all select 'Home Chef', 'The "Home Chef" meal is a heartwarming ensemble of baked favorites, perfect for those who love the taste of home. It features a savory Cheese Bread with a delightful cheesy crust, sweet and indulgent Chocolate Chip Cookies for a classic treat, and fluffy Butter Muffins that melt in your mouth with every bite. This selection is sure to bring the cozy comfort of homemade goodness to your table.'
 )

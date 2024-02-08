@@ -4,7 +4,7 @@ create or alter proc dbo.RecipeSummaryGet(
 )
 as
 begin 
-	select r.RecipeId, r.UsersId, r.RecipeName, r.RecipeStatus, Users = CONCAT(u.FirstName, ' ', u.LastName), r.Calories, Users = COUNT(ri.RecipeId), r.RecipePicture, r.Vegan
+	select r.RecipeId, r.UsersId, r.RecipeName, r.RecipeStatus, Users = CONCAT(u.FirstName, ' ', u.LastName), r.Calories, NumIngredients = COUNT(ri.RecipeId), r.RecipePicture, r.Vegan
 	from Recipe r
 	join users u
 	on u.UsersId = r.UsersId
