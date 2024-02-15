@@ -12,6 +12,7 @@
         private string _user = "";
         private int _NumRecipes;
         private string _Skill = "";
+        private string _CookbookDesc = "";
 
         public List<bizCookbook> GetCookbookSummary()
         {
@@ -109,6 +110,19 @@
                 if (_Skill != value)
                 {
                     _Skill = value;
+                    InvokePropertyChanged();
+                }
+            }
+        }
+
+        public string CookbookDesc
+        {
+            get { return _CookbookDesc; }
+            set
+            {
+                if (_CookbookDesc != value)
+                {
+                    _CookbookDesc = value;
                     InvokePropertyChanged();
                 }
             }

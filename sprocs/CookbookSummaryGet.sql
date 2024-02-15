@@ -4,7 +4,7 @@ create or alter proc dbo.CookbookSummaryGet(
 )
 as
 begin 
-	select c.CookbookId, c.CookbookName, Users = CONCAT(u.FirstName, ' ', u.LastName), NumRecipes = COUNT(cr.CookbookRecipeId), c.Price, c.Skill
+	select c.CookbookId, c.CookbookName, Users = CONCAT(u.FirstName, ' ', u.LastName), NumRecipes = COUNT(cr.CookbookRecipeId), c.Price, c.Skill, c.CookbookDesc
 	from Cookbook c
 	join users u
 	on u.UsersId = c.UsersId
@@ -12,7 +12,7 @@ begin
 	on c.CookbookId = cr.CookbookId
 	where c.CookbookId = @CookbookId
 	or @All = 1
-	group by c.CookbookId, c.CookbookName, u.FirstName, u.LastName, c.Price, c.Skill
+	group by c.CookbookId, c.CookbookName, u.FirstName, u.LastName, c.Price, c.Skill, c.CookbookDesc
 	order by c.CookbookName
 end
 go

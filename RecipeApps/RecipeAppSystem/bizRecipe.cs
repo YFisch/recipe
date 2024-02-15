@@ -29,6 +29,15 @@
             return GetListFromDataTable(dt);
         }
 
+        public List<bizRecipe> GetRecipeCookbook(string cookbookdesc)
+        {
+            DataTable dt = new();
+            SqlCommand cmd = SQLUtility.GetSQLCommand("RecipeByCookbookGet");
+            SQLUtility.SetParamValue(cmd, "@CookbookDesc", cookbookdesc);
+            dt = SQLUtility.GetDataTable(cmd);
+            return GetListFromDataTable(dt);
+        }
+
         public DataTable SearchRecipes(string recipenameval)
         {
             DataTable dt = new();

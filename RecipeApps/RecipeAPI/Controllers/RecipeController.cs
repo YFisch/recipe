@@ -22,5 +22,11 @@ namespace RecipeAPI.Controllers
             r.Load(id);
             return r;
         }
+
+        [HttpGet("getbycookbook/{cookbookdesc}")]
+        public List<bizRecipe> GetBycookbook(string cookbookdesc)
+        {
+            return new bizRecipe().GetRecipeCookbook(cookbookdesc);
+        }
     }
 }

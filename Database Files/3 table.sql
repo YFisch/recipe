@@ -151,6 +151,7 @@ alter table Cookbook add Skill as case SkillNumber
 	when 3 then 'advanced'
 	end persisted
 go
+alter table Cookbook add CookbookDesc as CONCAT(SUBSTRING(CookbookName,1,3), '(', SkillNumber, ')', DateCreated) persisted
 
 create table dbo.CookbookRecipe(
     CookbookRecipeId int not null identity primary key,

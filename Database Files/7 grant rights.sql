@@ -45,3 +45,4 @@ grant execute on TotalMealRecipes to approle
 grant execute on MeasurementDelete to approle
 grant execute on RecipeIngredientsGet to approle
 grant execute on CookbookSummaryGet to approle
+grant execute on RecipeByCookbookGet to approle
